@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>All The Games I've Ever Suggested · TechDweeb</title>
+<meta name="theme-color" content="#ff6700">
+<meta name="description" content="Every game TechDweeb has ever recommended on YouTube, video by video — plus the nerdy stats.">
+<link rel="icon" href="assets/invader-1.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=VT323&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<!-- floating stickers, decorative -->
+<div class="stickers" aria-hidden="true">
+  <img class="st st-inv1" src="assets/invader-1.png" alt="">
+  <img class="st st-inv2" src="assets/invader-2.png" alt="">
+  <img class="st st-inv3" src="assets/MISEqndtEWxYXdvAgOqu.png" alt="">
+  <img class="st st-inv4" src="assets/wRqcyGxvlbxvNyOCTimH.png" alt="">
+</div>
+
+<header class="hero">
+  <div class="hero-inner">
+    <a class="logo" href="https://www.youtube.com/@TechDweeb" target="_blank" rel="noopener">
+      <img src="assets/logo.png" alt="TechDweeb on YouTube" width="380" height="228">
+    </a>
+    <div class="hero-note note">
+      <h1>All The Games I've Ever&nbsp;Suggested</h1>
+      <p class="hero-sub">Every game from every recommendation video &amp; Dusty Game Society review. Sorted, searchable, and graphed by a computer that is smarter than me.</p>
+    </div>
+    <img class="hero-cat" src="assets/cat.png" alt="" aria-hidden="true" width="118" height="159">
+    <span class="hero-meow" aria-hidden="true">MEOW!</span>
+    <img class="hero-rootbeer" src="assets/rootbeer.png" alt="" aria-hidden="true" width="62" height="99" title="Root beer is my favourite vegetable.">
+  </div>
+
+  <div class="kpis" id="kpis"></div>
+
+  <nav class="tabs" role="tablist" aria-label="Sections">
+    <button role="tab" class="btn" id="tabbtn-videos" data-tab="videos" aria-controls="tab-videos" aria-selected="true">▶ Videos</button>
+    <button role="tab" class="btn" id="tabbtn-games" data-tab="games" aria-controls="tab-games" aria-selected="false" tabindex="-1">! Games A–Z</button>
+    <button role="tab" class="btn" id="tabbtn-stats" data-tab="stats" aria-controls="tab-stats" aria-selected="false" tabindex="-1">! Stats.exe</button>
+  </nav>
+</header>
+
+<main id="main">
+  <!-- VIDEOS ---------------------------------------------------------------->
+  <section id="tab-videos" class="tab" role="tabpanel" aria-labelledby="tabbtn-videos">
+    <h2 class="sr">Every video, newest first</h2>
+    <div class="win toolbar">
+      <div class="win-bar"><span>search.ini</span><span class="win-btns" aria-hidden="true"><i></i><i></i></span></div>
+      <div class="win-body filters">
+        <label class="f-search"><span>Search</span>
+          <input id="q" type="search" placeholder="Search a game or video…" autocomplete="off">
+        </label>
+        <label><span>Type</span>
+          <select id="f-type"><option value="">Everything</option><option value="list">Game lists</option><option value="review">DGS reviews</option></select>
+        </label>
+        <label><span>System</span><select id="f-sys"><option value="">All systems</option></select></label>
+        <label><span>Year</span><select id="f-year"><option value="">All years</option></select></label>
+        <label><span>Sort</span>
+          <select id="f-sort">
+            <option value="new">Newest first</option><option value="old">Oldest first</option>
+            <option value="views">Most viewed</option><option value="games">Most games</option>
+          </select>
+        </label>
+        <button id="reset" class="btn btn-sm" type="button">Reset</button>
+      </div>
+    </div>
+    <p class="count" id="count" aria-live="polite"></p>
+    <div class="grid" id="grid"></div>
+    <div class="empty note" id="empty" hidden>
+      <p>No games found. I checked. Twice.</p>
+      <button id="empty-reset" class="btn btn-sm" type="button">Reset filters</button>
+    </div>
+  </section>
+
+  <!-- GAMES A–Z ------------------------------------------------------------->
+  <section id="tab-games" class="tab" role="tabpanel" aria-labelledby="tabbtn-games" hidden>
+    <h2 class="sr">Every game, A to Z</h2>
+    <div class="win">
+      <div class="win-bar"><span>games_a-z.txt</span><span class="win-btns" aria-hidden="true"><i></i><i></i></span></div>
+      <div class="win-body">
+        <div class="filters">
+          <label class="f-search"><span>Filter</span>
+            <input id="gq" type="search" placeholder="Type a game name…" autocomplete="off"></label>
+          <label><span>System</span><select id="g-sys"><option value="">All systems</option></select></label>
+          <label><span>Sort</span>
+            <select id="g-sort"><option value="az">A → Z</option><option value="n">Most recommended</option></select></label>
+        </div>
+        <p class="count" id="gcount" aria-live="polite"></p>
+        <div class="table-wrap">
+          <table class="gtable">
+            <caption class="sr">Every game I've suggested, with how many videos it appears in</caption>
+            <thead><tr><th scope="col">Game</th><th scope="col">System</th><th scope="col" class="num">Videos</th><th scope="col">Featured in</th></tr></thead>
+            <tbody id="gbody"></tbody>
+          </table>
+        </div>
+        <button id="gmore" class="btn btn-sm more" type="button" hidden>Show more</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS ----------------------------------------------------------------->
+  <section id="tab-stats" class="tab" role="tabpanel" aria-labelledby="tabbtn-stats" hidden>
+    <h2 class="sr">Stats about my suggestions</h2>
+    <div class="stats-grid" id="stats"></div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="foot-power" aria-hidden="true">
+    <img src="assets/power-strip.png" alt="" width="150" height="128" loading="lazy" decoding="async">
+    <span>INFINITE<br>POWER!</span>
+  </div>
+  <div class="foot-links">
+    <a class="btn btn-sm" href="https://www.youtube.com/@TechDweeb" target="_blank" rel="noopener">YouTube</a>
+    <a class="btn btn-sm" href="https://discord.gg/RfhFFcvazY" target="_blank" rel="noopener">Discord</a>
+    <a class="btn btn-sm" href="https://www.patreon.com/TechDweeb" target="_blank" rel="noopener">Patreon</a>
+    <a class="btn btn-sm" href="https://techdweeb.straw.page" target="_blank" rel="noopener">More Dweeb</a>
+  </div>
+  <p class="foot-note" id="foot-note"></p>
+  <p class="foot-credit">Built by <a href="https://github.com/Eeman1113">Eeman Majumder</a> for TechDweeb.</p>
+</footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+
+<script src="data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
